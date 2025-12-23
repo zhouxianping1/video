@@ -1,248 +1,379 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<title>ELT Vita-Youth 直播脚本｜钩子字幕＋中越双语</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  body{
-    background:#0f172a;
-    color:#e5e7eb;
-    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Roboto,Arial,sans-serif;
-    padding:20px;
-    line-height:1.7;
-  }
-  h1,h2{color:#60A5FA;}
-  .box{
-    background:#111827;
-    border:1px solid #1f2937;
-    border-radius:12px;
-    padding:16px 20px;
-    margin-bottom:26px;
-  }
-  .tag{
-    display:inline-block;
-    padding:2px 8px;
-    background:#1f2937;
-    border-radius:8px;
-    font-size:12px;
-    margin-right:6px;
-    margin-bottom:6px;
-    color:#93c5fd;
-  }
-  .cn{color:#e5e7eb;}
-  .vi{color:#9ca3af;}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>外贸三语 WordPress 网站｜合规方案摘要（1页）</title>
+  <style>
+    :root{
+      --primary: #1890ff;
+      --primary-dark: #096dd9;
+      --primary-light: #e6f7ff;
+      --text: #262626;
+      --text-secondary: #595959;
+      --text-muted: #8c8c8c;
+      --border: #d9d9d9;
+      --border-light: #f0f0f0;
+      --bg: #f5f5f5;
+      --card: #ffffff;
+      --accent: #52c41a;
+      --warning: #faad14;
+      --shadow: rgba(0,0,0,0.08);
+      --shadow-hover: rgba(0,0,0,0.12);
+    }
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body{
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", 
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, #e6f4ff 0%, #bae0ff 100%);
+      line-height: 1.6;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .wrap{
+      max-width: 1000px;
+      margin: 32px auto;
+      padding: 0 20px;
+    }
+    .sheet{
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .sheet::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+    }
+    h1{
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0 0 12px 0;
+      color: var(--text);
+      letter-spacing: 0.5px;
+      line-height: 1.4;
+    }
+    .sub{
+      color: var(--text-secondary);
+      font-size: 13px;
+      margin-bottom: 28px;
+      padding: 12px 16px;
+      background: var(--primary-light);
+      border-left: 3px solid var(--primary);
+      border-radius: 4px;
+      line-height: 1.6;
+    }
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .block{
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      background: var(--card);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .block:hover{
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px var(--shadow);
+      transform: translateY(-2px);
+    }
+    .block h2{
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0 0 12px 0;
+      color: var(--text);
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--primary-light);
+      position: relative;
+    }
+    .block h2::before{
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+    }
+    .block ul{
+      margin: 0;
+      padding-left: 20px;
+      list-style: none;
+    }
+    .block li{
+      margin: 8px 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      position: relative;
+      padding-left: 8px;
+    }
+    .block li::before{
+      content: '▸';
+      position: absolute;
+      left: -16px;
+      color: var(--primary);
+      font-size: 12px;
+    }
+    .block li b{
+      color: var(--text);
+      font-weight: 600;
+    }
+    .full{ 
+      grid-column: 1 / -1; 
+    }
+    .badges{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-light);
+    }
+    .badge{
+      font-size: 12px;
+      border: 1px solid var(--primary);
+      padding: 6px 14px;
+      border-radius: 4px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      white-space: nowrap;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .badge:hover{
+      background: var(--primary);
+      color: #fff;
+    }
+    .note{
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 16px;
+      border-top: 1px dashed var(--border);
+      padding-top: 16px;
+      line-height: 1.7;
+      background: #fffbe6;
+      padding: 14px 16px;
+      border-radius: 4px;
+      border: 1px solid #ffe58f;
+    }
+    .note b{
+      color: var(--text);
+      font-weight: 600;
+    }
+    .footer{
+      margin-top: 24px;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-light);
+    }
+    .footer div{
+      line-height: 1.6;
+    }
+    .cta{
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    /* 打印为 1 页 A4 友好 */
+    @media print{
+      body{ 
+        background: #fff; 
+      }
+      .wrap{ 
+        margin: 0; 
+        padding: 0; 
+        max-width: none; 
+      }
+      .sheet{
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 14mm 14mm;
+      }
+      .sheet::before{
+        display: none;
+      }
+      .block{
+        break-inside: avoid;
+        box-shadow: none;
+      }
+      .block:hover{
+        transform: none;
+      }
+      .badge{ 
+        background: #fff; 
+        border-color: var(--border);
+        color: var(--text);
+      }
+      a{ 
+        color: inherit; 
+        text-decoration: none; 
+      }
+    }
+    /* 小屏优化 */
+    @media (max-width: 768px){
+      .wrap{
+        margin: 16px auto;
+        padding: 0 12px;
+      }
+      .sheet{
+        padding: 24px 20px;
+      }
+      h1{
+        font-size: 20px;
+      }
+      .grid{ 
+        grid-template-columns: 1fr; 
+        gap: 14px;
+      }
+      .block{
+        padding: 16px;
+      }
+      .footer{
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="wrap">
+    <div class="sheet">
+      <h1>外贸三语 WordPress 网站｜合规方案摘要（1页）</h1>
+      <div class="sub">
+        定位：外贸机械行业 · 中文/英文/越南语 · SEO 导向 · 可长期运营（用于客户/老板快速确认）
+      </div>
 
-<h1>ELT Vita-Youth 精华｜直播脚本 + 视频钩子字幕（中越双语）</h1>
+      <div class="grid">
+        <div class="block">
+          <h2>一、网站结构（必交付）</h2>
+          <ul>
+            <li>Home / About Us / Products</li>
+            <li>产品分类：Press Brake / Shearing / Laser / Automation / Custom Solutions…</li>
+            <li>产品详情页 / News / Case / Contact</li>
+            <li>Inquiry Form（询盘表单）/ 全站多语言切换</li>
+          </ul>
+        </div>
 
-<!-- ========================= -->
-<!-- A SCRIPT -->
-<!-- ========================= -->
-<div class="box">
-<h2>🅰️ 脚本 1：上班族暗沉 + 立刻优惠</h2>
+        <div class="block">
+          <h2>二、多语言系统（合规重点）</h2>
+          <ul>
+            <li>使用 <b>WPML 或 Polylang Pro（正版）</b></li>
+            <li>URL 语言路径：<b>/en</b>、<b>/vn</b></li>
+            <li>页面/分类/产品：<b>可独立翻译</b></li>
+            <li>多语言 sitemap + 多语言 SEO（Title/Description 独立）</li>
+            <li>任意页面可切换语言</li>
+          </ul>
+        </div>
 
-<!-- HOOK -->
-<div class="tag">✨ 0–3 秒钩子字幕（高点击）</div>
-<p>
-<span class="cn">【3 秒吸收？上班脸秒变亮！】</span><br>
-<span class="vi">【Thấm 3 giây? Da sáng liền cho dân văn phòng!】</span>
-</p>
+        <div class="block">
+          <h2>三、内容建设（不只是空壳）</h2>
+          <ul>
+            <li>首页完整布局 + Banner 设计</li>
+            <li>3–5 个分类页（每类示范 ≥3 个产品）</li>
+            <li>About Us / Contact（Google Map + Form）</li>
+            <li>询盘表单提交到指定邮箱</li>
+            <li>WhatsApp / 电话 / 邮箱快捷按钮</li>
+          </ul>
+        </div>
 
-<div class="tag">🎯 4–6 秒亮点字幕</div>
-<p>
-<span class="cn">不假白｜不黏腻｜敏感肌可用</span><br>
-<span class="vi">Không bết｜Không giả trắng｜Da nhạy cảm dùng được</span>
-</p>
+        <div class="block">
+          <h2>四、产品详情页（B2B 产品系统）</h2>
+          <ul>
+            <li>图片 / 参数（结构化）/ 视频 / PDF 下载</li>
+            <li>询价按钮（表单/WhatsApp）</li>
+            <li>支持 SEO：Schema Product</li>
+            <li>可扩展：后期新增产品与分类不返工</li>
+          </ul>
+        </div>
 
-<div class="tag">📢 视频标题（适合 TikTok ads）</div>
-<p>
-<span class="cn">上班族必备亮肤精华｜3 秒吸收不黏腻｜敏感肌也能用</span><br>
-<span class="vi">Serum sáng da cho dân văn phòng｜Thấm 3s không bết｜Da nhạy cảm ok</span>
-</p>
+        <div class="block full">
+          <h2>五、SEO 技术要求（Google 基础合规）</h2>
+          <ul>
+            <li>独立 Title / Meta Description（多语言）</li>
+            <li>URL 静态化、H1/H2、Breadcrumb（面包屑）</li>
+            <li>robots.txt、sitemap.xml（含多语言）</li>
+            <li>Schema：Organization + Product</li>
+            <li>图片 ALT、缓存与图片压缩优化</li>
+            <li>速度目标：PageSpeed <b>移动 ≥60</b>、<b>桌面 ≥80</b></li>
+          </ul>
+          <div class="badges">
+            <span class="badge">SEO 插件：RankMath 或 Yoast（正版）</span>
+            <span class="badge">缓存：WP Super Cache（配置完成）</span>
+            <span class="badge">图片：Smush（压缩与优化）</span>
+          </div>
+        </div>
 
-<div class="tag">🛒 挂车按钮 CTA 文案（越南语短促成交）</div>
-<p>
-<span class="vi">MUA 1 TẶNG 1 – Bấm vào giỏ để xem giá thật!</span><br>
-<span class="cn">买一送一，点小黄车查看真实价格！</span>
-</p>
+        <div class="block">
+          <h2>六、必装插件（必须正版）</h2>
+          <ul>
+            <li>Elementor Pro</li>
+            <li>WPML / Polylang Pro</li>
+            <li>RankMath / Yoast SEO</li>
+            <li>WP Super Cache / Smush</li>
+            <li>Contact Form 7 / Google Site Kit</li>
+          </ul>
+        </div>
 
-<div class="tag">#️⃣ 话题标签（高流量）</div>
-<p>
-<span class="vi">#serumduongda #lamdep #duongtrang #xuhuong #ELT #skincareroutine #serumsangda</span><br>
-<span class="cn">#精华 #提亮 #美白淡印 #敏感肌可用 #ELT #越南美妆</span>
-</p>
+        <div class="block">
+          <h2>七、Google & 安全性能</h2>
+          <ul>
+            <li>GA4 + Search Console（可选 GTM）</li>
+            <li>SSL（HTTPS）/ 防垃圾邮件</li>
+            <li>自动备份（每日/每周）</li>
+          </ul>
+        </div>
 
-<hr>
+        <div class="block full">
+          <h2>八、网站所有权（强制）</h2>
+          <ul>
+            <li>域名、主机后台、WordPress 超级管理员权限</li>
+            <li>FTP/文件管理器（全源码）与 phpMyAdmin 数据库权限</li>
+            <li>主题/插件均为正版，并提供授权方式/激活码（可迁移）</li>
+          </ul>
+          <div class="note">
+            <b>结论：</b><span class="cta">本方案为“可做 Google 获客”的完整合规方案</span>，包含多语言 SEO、产品系统与正版授权；不等同于低价“展示型网站方案”。
+          </div>
+        </div>
 
-<!-- SCRIPT CONTENT -->
-<div class="tag">🎤 一行中文＋一行越南语口播</div>
+        <div class="block full">
+          <h2>九、周期与预算（参考区间）</h2>
+          <ul>
+            <li>周期：<b>25个左右 工作日</b></li>
+            <li>合理预算：<b>40,000,000 – 45,000,000 VND</b>（视内容量、视觉设计与资料齐全程度浮动）</li>
+          </ul>
+        </div>
+      </div>
 
-<p>
-<span class="cn">上班的时候脸总是暗沉，看起来像一直没睡够，对不对？</span><br>
-<span class="vi">Đi làm mà lúc nào mặt cũng xỉn màu, nhìn như thiếu ngủ suốt đúng không?</span>
-</p>
-
-<p>
-<span class="cn">这款精华 3 秒吸收，皮肤会更亮、更均匀，整个人精神很多。</span><br>
-<span class="vi">Serum này thấm đúng khoảng 3 giây, da sáng hơn, đều màu hơn, nhìn có sức sống hơn hẳn.</span>
-</p>
-
-<p>
-<span class="cn">质地非常轻薄、不黏腻，敏感肌也能用，早上照镜子都会觉得不同。</span><br>
-<span class="vi">Chất serum mỏng, không bết dính, da nhạy cảm dùng vẫn ổn, sáng dậy soi gương thấy da khác liền.</span>
-</p>
-
-<p>
-<span class="cn">今天有<b>买一送一 + 免运费</b>，数量有限。</span><br>
-<span class="vi">Hôm nay đang có <b>MUA 1 TẶNG 1 + freeship</b>, số lượng có hạn.</span>
-</p>
-
-<p>
-<span class="cn">点一下小黄车就可以看到真实价格与优惠。</span><br>
-<span class="vi">Bấm vào giỏ vàng để xem giá thật và ưu đãi chi tiết nha.</span>
-</p>
-
-</div>
-
-
-<!-- ========================= -->
-<!-- B SCRIPT -->
-<!-- ========================= -->
-<div class="box">
-<h2>🅱️ 脚本 2：敏感肌 + 在 treatment 也能用</h2>
-
-<div class="tag">✨ 0–3 秒钩子字幕</div>
-<p>
-<span class="cn">【正在 Tret？红？刺痛？这个精华救你！】</span><br>
-<span class="vi">【Đang tret? Đỏ rát? Serum này cứu da liền!】</span>
-</p>
-
-<div class="tag">🎯 4–6 秒亮点字幕</div>
-<p>
-<span class="cn">镇静｜淡印｜不刺激</span><br>
-<span class="vi">Làm dịu｜Mờ thâm｜Không kích ứng</span>
-</p>
-
-<div class="tag">📢 视频标题</div>
-<p>
-<span class="cn">敏感肌急救精华｜treatment 期间也能用｜不刺激</span><br>
-<span class="vi">Serum cứu da nhạy cảm｜Dùng được khi đang treatment｜Không kích ứng</span>
-</p>
-
-<div class="tag">🛒 CTA 挂车标题</div>
-<p>
-<span class="vi">Da nhạy cảm? Bấm giỏ kiểm tra ngay ưu đãi!</span><br>
-<span class="cn">敏感肌点这里查看真实优惠！</span>
-</p>
-
-<div class="tag">#️⃣ Hashtag</div>
-<p>
-<span class="vi">#skincareviet #danhanhcam #treatment #serumELT #lamdep</span><br>
-<span class="cn">#敏感肌精华 #淡印修复 #ELT精华 #越南美妆</span>
-</p>
-
-<hr>
-
-<div class="tag">🎤 口播</div>
-
-<p>
-<span class="cn">正在做治疗的皮肤，一点东西都容易刺激，对不对？</span><br>
-<span class="vi">Da đang treatment, dễ đỏ rát nên cứ sợ bôi gì cũng kích ứng đúng không?</span>
-</p>
-
-<p>
-<span class="cn">这瓶是给敏感肌做的，质地轻薄、吸收快、不含刺激成分。</span><br>
-<span class="vi">Serum này sinh ra cho da nhạy cảm, mỏng nhẹ, thấm nhanh, không có hương liệu nồng.</span>
-</p>
-
-<p>
-<span class="cn">很多女孩在用 tret 时，就加它来镇静、淡印，第二天红感明显减少。</span><br>
-<span class="vi">Nhiều bạn đang tret thì thêm em này để làm dịu, hỗ trợ mờ thâm, sáng dậy đỡ đỏ hẳn.</span>
-</p>
-
-<p>
-<span class="cn">现在有<b>买 1 送小样</b>的敏感肌专属优惠，还有免运费。</span><br>
-<span class="vi">Hiện đang có <b>mua 1 tặng kèm sample</b> cho da nhạy cảm, có freeship luôn.</span>
-</p>
-
-<p>
-<span class="cn">点小黄车看成分再下单更安心。</span><br>
-<span class="vi">Bấm vào giỏ vàng xem thành phần rồi quyết cho yên tâm nha.</span>
-</p>
-
-</div>
-
-
-<!-- ========================= -->
-<!-- C SCRIPT -->
-<!-- ========================= -->
-<div class="box">
-<h2>🅾️ 脚本 3：7 天挑战 + 明显前后对比</h2>
-
-<div class="tag">✨ 0–3 秒钩子字幕</div>
-<p>
-<span class="cn">【7 天提亮挑战！敢不敢看前后对比？】</span><br>
-<span class="vi">【Thử thách 7 ngày – dám coi before/after không?】</span>
-</p>
-
-<div class="tag">🎯 4–6 秒亮点字幕</div>
-<p>
-<span class="cn">提亮｜淡印｜均匀肤色</span><br>
-<span class="vi">Sáng da｜Mờ thâm｜Đều màu</span>
-</p>
-
-<div class="tag">📢 视频标题</div>
-<p>
-<span class="cn">7 天亮肤精华｜痘印淡得肉眼可见｜真实对比</span><br>
-<span class="vi">Serum sáng da 7 ngày｜Mờ thâm rõ｜Before–After thật</span>
-</p>
-
-<div class="tag">🛒 CTA 挂车标题</div>
-<p>
-<span class="vi">Muốn thử “7 ngày đổi da”? Bấm xem ưu đãi!</span><br>
-<span class="cn">想挑战“7 天提亮”？点小黄车看优惠！</span>
-</p>
-
-<div class="tag">#️⃣ Hashtag</div>
-<p>
-<span class="vi">#7ngaydoida #serumsangda #elt #lamdep #skincare</span><br>
-<span class="cn">#7天提亮 #淡印提亮 #ELT精华 #越南美妆</span>
-</p>
-
-<hr>
-
-<div class="tag">🎤 口播</div>
-
-<p>
-<span class="cn">我给大家看一下用这瓶精华做的“7 天挑战”。</span><br>
-<span class="vi">Tui cho mấy bà coi thử “thử thách 7 ngày” với serum này nha.</span>
-</p>
-
-<p>
-<span class="cn">第一天皮肤很暗沉、痘印明显，我都有拉近镜头。</span><br>
-<span class="vi">Ngày đầu da xỉn, thâm rõ, tui quay cận luôn.</span>
-</p>
-
-<p>
-<span class="cn">坚持用了 7 天之后，同角度拍，皮肤亮、印淡、整体不灰了。</span><br>
-<span class="vi">Dùng 7 ngày, quay lại đúng góc, da sáng hơn, thâm mờ dần, mặt đỡ tối hẳn.</span>
-</p>
-
-<p>
-<span class="cn">现在有<b>买一送亮肤面膜</b>的套组优惠，数量不多。</span><br>
-<span class="vi">Đang có ưu đãi <b>mua 1 tặng mặt nạ sáng da</b>, số lượng không nhiều đâu.</span>
-</p>
-
-<p>
-<span class="cn">想试试“7 天换一张脸”的，现在就点小黄车抢优惠。</span><br>
-<span class="vi">Ai muốn thử “7 ngày đổi da”, bấm giỏ vàng chốt đơn sớm nha.</span>
-</p>
-
-</div>
-
+      <div class="footer">
+        <div>文档用途：客户确认 / 老板审批  （标准摘要）</div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
